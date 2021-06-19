@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankGameV.10版本", "TankGameV.10版本.csproj", "{804E7EA3-C470-4889-8BD1-14FC71C4B8C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{804E7EA3-C470-4889-8BD1-14FC71C4B8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{804E7EA3-C470-4889-8BD1-14FC71C4B8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{804E7EA3-C470-4889-8BD1-14FC71C4B8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{804E7EA3-C470-4889-8BD1-14FC71C4B8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F384AAD-32DE-4F38-90E1-3BA7E9329642}
+	EndGlobalSection
+EndGlobal
