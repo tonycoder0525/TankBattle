@@ -212,10 +212,8 @@ namespace TankGameV._10版本
                 //给一定的几率能够产生装备
 
                 //只要敌人挂了 马上出装备
-                if (r.Next(0, 100) <= 30)
-                {
-                    GameController.GetInstance().AddGameObject(new Prop(this.X, this.Y, r.Next(0, 3)));
-                }
+                GameController.GetInstance().AddGameObject(new Prop(this.X, this.Y, r.Next(0, 3)));
+
 
             }
             else//敌人被击中 但是没有死亡

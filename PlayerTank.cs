@@ -12,6 +12,8 @@ namespace TankGameV._10版本
 {
     class PlayerTank : Tank
     {
+        const double FIREINTERVAL = 0.5;
+
         private static Image[] imgs = { 
                               Resources.p1tankU,
                               Resources.p1tankD,
@@ -25,7 +27,6 @@ namespace TankGameV._10版本
             Born();
         }
 
-    /*    public  coolDown;*/
         public int BulletLevel
         {
             get;
@@ -37,6 +38,8 @@ namespace TankGameV._10版本
         {
             GameController.GetInstance().AddGameObject(new TankBorn(this.X, this.Y));
         }
+
+        double lastFireTime  = 0;
 
         public void KeyDown(KeyEventArgs e)
         {
@@ -59,7 +62,12 @@ namespace TankGameV._10版本
                     base.Move();
                     break;
                 case Keys.K:
-                    Fire();
+                    double now = DateTime.Now.Second + (double)DateTime.Now.Millisecond/1000;
+                    if (now >= lastFireTime + FIREINTERVAL)
+                    {
+                        Fire();
+                        lastFireTime = now;
+                    }
                     break;
             }
         }
@@ -67,19 +75,16 @@ namespace TankGameV._10版本
 
         public override void Fire()
         {
-          
-                switch (BulletLevel)
-                {
-                    case 0: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 1));
-                        break;
-                    case 1: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 2));
-                        break;
-                    case 2: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 3));
-                        break;
-                }
+            switch (BulletLevel)
+            {
+                case 0: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 1));
+                    break;
+                case 1: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 2));
+                    break;
+                case 2: GameController.GetInstance().AddGameObject(new PlayerBullet(this, 10, 10, 3));
+                    break;
+            }
 
-            
-           
         }
 
 
