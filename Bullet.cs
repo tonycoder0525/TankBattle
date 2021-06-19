@@ -46,25 +46,25 @@ namespace TankGameV._10版本
                     break;
             }
             //在游戏对象移动完成后 我们应该判断一下 当前游戏对象是否超出当前的窗体 
-            /*if (this.X <= 0)
-            {
-                this.X = -100;
-            }
-            if (this.Y <= 0)
-            {
-                this.Y = -100;
-            }
-            if (this.X >= 800)
-            {
-                this.X = 900;
-            }
-            if (this.Y >= 700)
-            {
-                this.Y = 800;
-            }*/   if (this.X < 0 || this.X > 800 || this.Y < 0 || this.Y > 700) 
-                GameController.GetInstance().RemoveGameObject(this);
+            //if (this.X <= 0)
+            //{
+            //    this.X = -100;
+            //}
+            //if (this.Y <= 0)
+            //{
+            //    this.Y = -100;
+            //}
+            //if (this.X >= 800)
+            //{
+            //    this.X = 900;
+            //}
+            //if (this.Y >= 700)
+            //{
+            //    this.Y = 800;
+            //}
             g.DrawImage(img, this.X, this.Y);
-         
+            if (this.X < 0 || this.X > 800 || this.Y < 0 || this.Y > 700)
+                GameController.GetInstance().RemoveGameObject(this);
         }
 
 
