@@ -35,6 +35,32 @@ namespace TankGameV._10版本
             set;
         }
 
+        KeyEventArgs moveBuffer, fireBuffer;
+        bool moveBufferEnabled = false, fireBufferEnabled = false;
+
+        public void AddBuffer(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.K)
+            {
+                fireBufferEnabled = true;
+                fireBuffer = e;
+            }
+            else
+            {
+                moveBufferEnabled = true;
+                moveBuffer = e;
+            }
+        }
+
+        public void ClearBuffer()
+        {
+            if (moveBufferEnabled)
+                PlayerTank.KeyDown(moveBuffer);
+            if (fireBufferEnabled)
+                PlayerTank.KeyDown(fireBuffer);
+            moveBufferEnabled = fireBufferEnabled = false;
+        }
+
 
         //将我们的敌人存储在泛型集合中
         List<EnemyTank> enemyTanks = new List<EnemyTank>();
@@ -432,7 +458,7 @@ namespace TankGameV._10版本
                         //若曼哈顿距离<=100则炸毁该敌方坦克
                         EnemyTank enemyTank = enemyTanks[i];
                         int distance = Math.Abs(enemyTank.X - PlayerTank.X) + Math.Abs(enemyTank.Y - PlayerTank.Y);
-                        if (distance > 100) continue;
+                        if (distance > 500) continue;
 
 
                         //把敌人坦克的生命值赋值为0
