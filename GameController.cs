@@ -9,12 +9,13 @@ using System.Windows.Forms;
 using TankGameV._10版本.Properties;
 namespace TankGameV._10版本
 {
-
+    
     /// <summary>
     /// 这个单例类用来创建我们全局唯一的游戏对象
     /// </summary>
     class GameController
     {
+        bool over = false;
         private GameController()
         { }
 
@@ -214,8 +215,7 @@ namespace TankGameV._10版本
                 walls[i].Draw(g);
             }
         }
-
-
+     
 
         /// <summary>
         /// 碰撞检测的方法
@@ -250,8 +250,7 @@ namespace TankGameV._10版本
 
                     PlayerTank.Life -= PlayerTank.Life;
                     PlayerTank.IsOver();
-                    //将敌人子弹删除
-                    enemyBullets.Remove(enemyBullets[i]);
+                    GameController.GetInstance().GameOver();
 
                     break;
                 }
@@ -390,14 +389,15 @@ namespace TankGameV._10版本
                     {//与血量不为一的轻型坦克相撞
                         PlayerTank.Life -= PlayerTank.Life;
                         PlayerTank.IsOver();
+                        GameController.GetInstance().GameOver();
+                        break;
 
                     }
                     else if (enemyTanks[j].EnemyTankType == 2)
                     {//与重型坦克相撞
                         PlayerTank.Life -= PlayerTank.Life;
                         PlayerTank.IsOver();
-
-
+                        GameController.GetInstance().GameOver();
                         break;
                     }
 
@@ -437,7 +437,27 @@ namespace TankGameV._10版本
             #endregion
         }
 
+        public void ClearMap()
+        {
+            for(int i=0; i<walls.Count();i++)
+            {
+                GameController.GetInstance().RemoveGameObject(walls[i]);
+            }
+        }
 
+        public void GameOver()
+        {
+            if (this.over == false)
+            {
+                this.over = true;
+                if (MessageBox.Show("Mission Failed QAQ ", "Game Over!", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
+            
+
+        }
 
         public void CollectProps(int Type)
         {
@@ -465,6 +485,7 @@ namespace TankGameV._10版本
                         enemyTanks[i].Life = 0;
                         //调用敌人死亡的方法
                         enemyTanks[i].IsOver();
+
                     }
                     break;
                 case 2://想办法让所有的敌人暂停

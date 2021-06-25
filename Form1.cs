@@ -104,7 +104,85 @@ namespace TankGameV._10版本
         /// <summary>
         /// 初始化游戏地图
         /// </summary>
+        int temp = 0;
         public void InitialMap()
+        {
+            maps map1 = new maps(Map1);
+            maps map2 = new maps(Map2);
+            maps map3 = new maps(Map3);
+            switch (temp % 3)
+            {
+                case 0:
+                    clearMap();
+                    map2();
+                    temp++;
+                    Console.WriteLine(0);
+                    break;
+                case 1:
+                    clearMap();
+                    map1();
+                    temp++;
+                    Console.WriteLine(0);
+                    break;
+                default:
+                    clearMap();
+                    map3();
+                    temp++;
+                    Console.WriteLine(0);
+                    break;
+            }
+            
+        }
+        public delegate void maps();
+        public void Map2()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                
+                GameController.GetInstance().AddGameObject(new Wall(100 , 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(100 + i * 6, 100));
+               GameController.GetInstance().AddGameObject(new Wall(160, 100 + 5* i));
+                GameController.GetInstance().AddGameObject(new Wall(100 + i * 6, 145));
+                GameController.GetInstance().AddGameObject(new Wall(100 + i * 6, 145+7*i));
+
+                GameController.GetInstance().AddGameObject(new Wall(200, 100+12*i));
+                GameController.GetInstance().AddGameObject(new Wall(200+5*i, 210));
+                GameController.GetInstance().AddGameObject(new Wall(250, 100 + 12 * i));
+
+                GameController.GetInstance().AddGameObject(new Wall(300, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(300+ 5 * i, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(350, 100 + 12 * i));
+
+                GameController.GetInstance().AddGameObject(new Wall(400, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(400 + 5 * i, 100 ));
+                GameController.GetInstance().AddGameObject(new Wall(450, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(400+5*i, 210));
+
+                GameController.GetInstance().AddGameObject(new Wall(500, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(500 + 5 * i, 100));
+                GameController.GetInstance().AddGameObject(new Wall(550, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(500 + 5 * i, 210));
+
+                GameController.GetInstance().AddGameObject(new Wall(600, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(600 + 5 * i, 100));
+                GameController.GetInstance().AddGameObject(new Wall(600 + 5 * i, 155));
+                GameController.GetInstance().AddGameObject(new Wall(650, 100 + 12 * i));
+                GameController.GetInstance().AddGameObject(new Wall(600 + 5 * i, 210));
+
+
+            }
+        }
+        public void Map3()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+
+                throw new NotImplementedException();
+
+             
+            }
+        }
+        public void Map1()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -123,9 +201,7 @@ namespace TankGameV._10版本
                 GameController.GetInstance().AddGameObject(new Wall(595 - i * 8, 100 + 15 * i / 2));
                 GameController.GetInstance().AddGameObject(new Wall(530 + i * 8, 165 + 15 * i / 2));
             }
-
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -135,7 +211,16 @@ namespace TankGameV._10版本
         {
             GameController.GetInstance().Draw(e.Graphics);
         }
-
+        public void clearMap()
+        {
+            GameController.GetInstance().ClearMap();
+        }
+        public void changeMap()
+        {
+            clearMap();
+            InitialMap();
+        }
+        
 
 
         /// <summary>
@@ -147,6 +232,12 @@ namespace TankGameV._10版本
         {
             //GameController.GetInstance().PlayerTank.KeyDown(e);
             GameController.GetInstance().AddBuffer(e);
+            switch (e.KeyCode)
+            {
+                case Keys.M:
+                    changeMap();
+                    break;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

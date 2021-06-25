@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Media;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,6 +70,7 @@ namespace TankGameV._10版本
                         lastFireTime = now;
                     }
                     break;
+                
             }
         }
 
@@ -87,7 +89,6 @@ namespace TankGameV._10版本
 
         }
 
-
         public override void IsOver()
         {
             GameController.GetInstance().AddGameObject(new Explosion(this.X - 25, this.Y - 25));
@@ -98,9 +99,12 @@ namespace TankGameV._10版本
             SoundPlayer sp = new SoundPlayer(Resources.hit);
             sp.Play();
             //跳转到任务失败页面
-
             
+
+
+
         }
 
     }
+    
 }
